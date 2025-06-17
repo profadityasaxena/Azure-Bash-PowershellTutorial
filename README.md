@@ -1,14 +1,14 @@
-# Azure PowerShell Tutorial
-Author: Aditya Saxena  
-Date: June 2025
+# Azure Bash and PowerShell Tutorial  
+**Author:** Aditya Saxena  
+**Date:** June 2025  
 
 ---
 
 ## Project Overview
 
-The **Azure PowerShell Tutorial** is a structured instructional module designed to introduce, explain, and demonstrate the usage of PowerShell for automating and managing resources within the Microsoft Azure Cloud Platform.
+The **Azure Bash and PowerShell Tutorial** is a comprehensive instructional module designed to introduce, explain, and demonstrate the usage of **Bash scripting** and **PowerShell** for automating and managing resources within the Microsoft Azure Cloud Platform.
 
-By combining the declarative power of Azure Resource Manager with the scripting capabilities of PowerShell, this tutorial provides a hands-on pathway for learners, researchers, and practitioners to acquire cloud automation proficiency.
+By first building foundational skills in Bash—a widely used Unix/Linux scripting language—and then progressing to PowerShell’s object-oriented capabilities, this tutorial prepares learners for versatile, cross-platform cloud automation.
 
 ---
 
@@ -16,29 +16,45 @@ By combining the declarative power of Azure Resource Manager with the scripting 
 
 The primary objectives of this tutorial are:
 
-- **Foundation Building**  
-  Understand the architecture, structure, and capabilities of Azure PowerShell modules (`Az` module suite).
+### 1. Bash Scripting for Azure
 
-- **Installation & Configuration**  
-  Learn the installation process, environment setup, and authentication mechanisms for securely accessing Azure resources.
+- **Command-Line Foundation**  
+  Learn core Bash commands, scripting constructs, loops, functions, and environmental variables.
 
-- **Core Resource Management**  
-  Gain practical knowledge in creating, updating, and deleting Azure resources such as Virtual Machines, Storage Accounts, Resource Groups, and Networking components.
+- **Azure CLI with Bash**  
+  Use Bash to automate Azure operations via the Azure Command-Line Interface (CLI), including login, resource creation, and monitoring.
 
-- **Automation & Scripting**  
-  Develop reusable automation scripts to streamline routine cloud operations and optimize resource orchestration.
+- **Environment Setup**  
+  Install Azure CLI and configure shell environments on Linux/macOS/Windows (WSL).
 
-- **Security & Compliance**  
-  Explore secure automation practices, including identity management, access control, and integration with Azure Key Vault.
+- **File I/O and Logging**  
+  Perform input/output operations, redirection, and maintain logs for executed commands.
+
+- **Automation Scripts**  
+  Build reusable `.sh` scripts for provisioning and managing Azure VMs, Resource Groups, and Networking components.
+
+- **Error Handling and Debugging**  
+  Use `trap`, `$?`, `set -e`, and `set -x` for robust error management.
+
+### 2. PowerShell for Azure
+
+- **PowerShell Scripting Basics**  
+  Understand cmdlets, variables, pipeline operations, and control structures.
+
+- **Azure PowerShell (`Az` Module)**  
+  Automate Azure tasks using the `Az` module—create, update, and delete Azure resources programmatically.
+
+- **Installation and Configuration**  
+  Set up PowerShell Core, install Az modules, and configure authentication (interactive, service principal, managed identity).
+
+- **Script Authoring and Execution**  
+  Create `.ps1` scripts for infrastructure deployment, policy application, and tagging.
+
+- **Logging and Exception Handling**  
+  Implement `try`, `catch`, `finally`, and integrate logging with Azure Monitor.
 
 - **Advanced Orchestration**  
-  Introduce deployment methodologies leveraging ARM templates, Role-Based Access Control (RBAC), tagging, and policy-driven management.
-
-- **Error Handling and Logging**  
-  Incorporate robust error management patterns for production-grade cloud scripts.
-
-- **Futures Thinking**  
-  Foster creative thinking towards the evolving intersection of AI, information theory, and declarative cloud control paradigms.
+  Leverage ARM templates, RBAC, and declarative policies within PowerShell workflows.
 
 ---
 
@@ -55,11 +71,15 @@ The primary objectives of this tutorial are:
 
 ## Prerequisites
 
-- Active Azure Subscription (Free Tier sufficient for practice)
-- Basic knowledge of PowerShell scripting
-- Familiarity with cloud computing fundamentals
+- Active Azure Subscription (Free Tier sufficient for practice)  
+- Familiarity with basic command-line usage  
+- Introductory knowledge of cloud services and architecture  
+- Interest in automation and reproducible infrastructure design
 
 ---
 
-*Inspired by the principles of Claude Shannon, Geoffrey Hinton, and the systemic engineering approach advocated by Elon Musk and Jeff Bezos — this tutorial aims to blend technical depth with operational clarity.*
-# Azure-PowershellTutorial
+## Philosophical Note
+
+*Inspired by Claude Shannon's information theory, Geoffrey Hinton's representational learning, and the systems thinking of Elon Musk and Jeff Bezos—this tutorial aims to cultivate not only technical competence but a mindset for scalable, explainable, and intelligent automation.*
+
+---
