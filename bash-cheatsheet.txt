@@ -1,0 +1,227 @@
+===========================
+BASH COMMANDS CHEAT SHEET
+===========================
+
+🧭 FILESYSTEM NAVIGATION
+---------------------------
+pwd                 # Print current directory
+ls                  # List files in directory
+ls -l               # Long format list
+cd <dir>            # Change directory
+cd ..               # Go up one level
+cd ~                # Go to home directory
+mkdir <dir>         # Create a directory
+rmdir <dir>         # Remove empty directory
+
+📁 FILE MANAGEMENT
+---------------------------
+touch <file>        # Create empty file
+cp file1 file2      # Copy file1 to file2
+mv old new          # Rename or move file
+rm <file>           # Delete a file
+rm -r <dir>         # Delete directory recursively
+cat <file>          # Display file content
+less <file>         # Scroll through file
+head <file>         # First 10 lines
+tail <file>         # Last 10 lines
+nano <file>         # Open file in editor
+chmod +x script.sh  # Make script executable
+
+🔍 FINDING THINGS
+---------------------------
+find . -name "*.txt"         # Find all .txt files
+grep "word" file.txt         # Search for word in file
+grep -r "word" ./folder      # Recursive grep in folder
+grep -i "word" file          # Case-insensitive search
+grep -E "pattern" file       # Use extended regex
+which <command>              # Show path to command
+locate <file>                # Locate file (uses index)
+
+🔤 REGULAR EXPRESSIONS (with grep / awk / sed)
+-----------------------------------------------------------
+
+REGEX SYNTAX OVERVIEW:
+^         Anchors to the beginning of the line
+$         Anchors to the end of the line
+.         Matches any single character
+.*        Matches zero or more of any character (greedy match)
+[...]     Character class — matches any ONE of the characters inside
+[^...]    Negated class — matches any character NOT listed
+|         Logical OR (requires grep -E or egrep)
+\         Escape character (use \\ in double-quoted Bash strings)
++         One or more (requires extended regex: grep -E)
+?         Zero or one (also extended regex)
+{n,m}     Between n and m repetitions (also extended regex)
+
+COMMON CHARACTER CLASSES:
+[0-9]             Any digit
+[a-z]             Any lowercase letter
+[A-Z]             Any uppercase letter
+[A-Za-z0-9_]      Alphanumeric string + underscore
+[[:digit:]]       POSIX class: digits (equivalent to [0-9])
+[[:space:]]       POSIX class: whitespace (tabs, spaces, etc.)
+[[:alpha:]]       POSIX class: alphabet letters
+[[:punct:]]       Punctuation characters
+
+-----------------------------------------------------------
+PATTERNS EXPLAINED:
+^word                 # Matches lines that start with "word"
+word$                 # Matches lines that end with "word"
+^$                    # Matches empty (blank) lines
+.                     # Matches any single character (except newline)
+.*                    # Matches everything (used for greedy matching)
+[a-z]                 # Matches any lowercase letter (a through z)
+[0-9]                 # Matches any digit (0 through 9)
+[^0-9]                # Matches any non-digit character
+word1|word2           # Matches "word1" OR "word2" (extended regex)
+[[:space:]]           # Matches space, tab, or newline characters
+^[A-Za-z0-9_]+$       # Matches entire lines of alphanumeric strings
+
+-----------------------------------------------------------
+USAGE EXAMPLES:
+
+# grep: Find lines starting with "ERROR"
+grep "^ERROR" logfile.txt
+
+# grep: Find lines ending with "done"
+grep "done$" job.log
+
+# grep: Find blank lines
+grep "^$" document.txt
+
+# grep: Match lines with 3 consecutive digits (requires -E)
+grep -E "[0-9]{3}" numbers.txt
+
+# grep: Match lines that contain 'yes' OR 'no'
+grep -E "yes|no" survey.txt
+
+# sed: Print lines that contain 'pattern'
+sed -n '/pattern/p' file.txt
+
+# sed: Delete lines that are empty
+sed '/^$/d' file.txt
+
+# awk: Print only lines where the first column is a number
+awk '$1 ~ /^[0-9]+$/' data.txt
+
+# awk: Match alphanumeric usernames in first column
+awk '$1 ~ /^[A-Za-z0-9_]+$/' users.txt
+
+# grep: Match lines with a single word (no spaces)
+grep -E "^[^ ]+$" file.txt
+
+-----------------------------------------------------------
+FLAGS TO REMEMBER:
+
+-i     Ignore case
+-v     Invert match (show lines NOT matching)
+-n     Show line number in output
+-r     Recursive search in directories (grep)
+-l     Show only filenames with matches
+-c     Show count of matching lines
+-o     Show only matched text
+
+-----------------------------------------------------------
+QUICK TESTING:
+
+# Use echo + grep to test patterns on the fly
+echo "abc123" | grep -E "^[a-z]+[0-9]+$"
+
+-----------------------------------------------------------
+TIP:
+
+Use `grep -P` to enable Perl-compatible regex (PCRE) if supported by your system:
+grep -P "\d{3}-\d{2}-\d{4}" file.txt   # Match SSN-style format
+
+
+💡 TEXT PROCESSING
+---------------------------
+echo "text"                  # Print to screen
+cat file | grep "value"      # Filter lines
+sort file.txt                # Sort lines
+uniq file.txt                # Remove duplicates
+cut -d',' -f1 file.csv       # Get first column
+awk '{ print $1 }' file.txt  # Print first field
+sed 's/old/new/g' file.txt   # Replace text
+
+🌀 LOOPS AND CONTROL
+---------------------------
+for f in *.txt; do echo $f; done
+while true; do echo "loop"; sleep 1; done
+if [ $x -gt 5 ]; then echo "Big"; fi
+
+🧪 TESTS AND CONDITIONS
+---------------------------
+[ -f file.txt ]      # File exists
+[ -d dir ]           # Directory exists
+[ -z $var ]          # Variable is empty
+[ $x -eq 10 ]        # Equals
+[ $x -ne 10 ]        # Not equal
+[ $x -gt $y ]        # Greater than
+
+🔢 VARIABLES AND MATH
+---------------------------
+x=10                 # Set variable
+echo $x              # Access variable
+x=$((x + 1))         # Increment
+let "y = x * 2"      # Arithmetic
+
+🧰 SCRIPTING
+---------------------------
+#!/bin/bash              # Shebang
+set -e                   # Exit on error
+set -x                   # Print each command
+$0, $1, $2, ...          # Script name and arguments
+"$@"                    # All arguments
+exit 0                   # Exit with success
+
+📤 I/O REDIRECTION
+---------------------------
+command > out.txt        # Stdout to file
+command >> out.txt       # Append to file
+command 2> err.txt       # Stderr to file
+command > out 2>&1       # Merge stdout and stderr
+command < input.txt      # Input from file
+
+🔁 PIPELINE EXAMPLES
+---------------------------
+cat file | grep "error" | sort | uniq -c | sort -nr
+
+🌐 NETWORK
+---------------------------
+ping google.com           # Test connection
+curl https://example.com  # Fetch web page
+wget file.zip             # Download file
+
+🔒 PERMISSIONS
+---------------------------
+ls -l                     # Show permissions
+chmod +x file.sh          # Make executable
+chmod 755 file.sh         # rwxr-xr-x
+chown user:group file     # Change owner
+
+👤 USER INFO
+---------------------------
+whoami                   # Show current user
+id                       # Show UID and GID
+groups                   # Show group membership
+
+📆 SYSTEM INFO
+---------------------------
+uptime                   # How long system has been running
+df -h                    # Disk space (human readable)
+free -h                  # Memory usage
+top                      # Live system monitor
+ps aux                   # All running processes
+
+🎯 JOB CONTROL
+---------------------------
+&                        # Run command in background
+jobs                     # List background jobs
+fg                       # Bring job to foreground
+bg                       # Resume background job
+kill <PID>               # Kill process
+
+===========================
+END OF CHEAT SHEET
+===========================

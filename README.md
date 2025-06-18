@@ -6,6 +6,7 @@
 
 ## Project Overview
 
+
 The **Azure Bash and PowerShell Tutorial** is a comprehensive instructional module designed to introduce, explain, and demonstrate the usage of **Bash scripting** and **PowerShell** for automating and managing resources within the Microsoft Azure Cloud Platform.
 
 By first building foundational skills in Bash—a widely used Unix/Linux scripting language—and then progressing to PowerShell’s object-oriented capabilities, this tutorial prepares learners for versatile, cross-platform cloud automation.
