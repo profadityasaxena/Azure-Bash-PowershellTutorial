@@ -1,0 +1,171 @@
+===========================
+POWERSHELL CHEAT SHEET
+===========================
+
+🧭 BASIC COMMANDS
+---------------------------
+Get-Help               # Show help info for a cmdlet
+Get-Command            # List all available commands
+Get-Alias              # Show command aliases
+Clear-Host             # Clear the screen (alias: cls)
+
+💾 FILESYSTEM NAVIGATION
+---------------------------
+Get-Location           # Print working directory (alias: pwd)
+Set-Location C:\Path   # Change directory (alias: cd)
+Get-ChildItem          # List files and folders (alias: ls)
+New-Item file.txt      # Create a new file
+New-Item -Type Directory myDir   # Create a new folder
+Remove-Item file.txt   # Delete file or folder
+Copy-Item file1 file2  # Copy file
+Move-Item old new      # Rename or move file/folder
+
+📝 VARIABLES AND TYPES
+---------------------------
+$name = "Aditya"       # String variable
+$age = 30              # Integer variable
+$arr = @(1,2,3)        # Array
+$hash = @{key="val"}   # Hashtable
+[int]$x = 5            # Type-casting
+
+📤 OUTPUT
+---------------------------
+Write-Output "Hello"   # Standard output
+Write-Host "Hi"        # Colored console output
+Write-Verbose "Details" # Use with -Verbose flag
+
+🔁 LOOPS
+---------------------------
+# For loop
+for ($i = 1; $i -le 5; $i++) {
+    Write-Output $i
+}
+
+# While loop
+$i = 0
+while ($i -lt 5) {
+    Write-Output $i
+    $i++
+}
+
+# Foreach loop
+$items = @(1,2,3)
+foreach ($item in $items) {
+    Write-Output $item
+}
+
+🧠 CONDITIONALS
+---------------------------
+if ($age -gt 18) {
+    Write-Output "Adult"
+} elseif ($age -eq 18) {
+    Write-Output "Just 18"
+} else {
+    Write-Output "Minor"
+}
+
+Comparison:
+-eq  # Equal
+-ne  # Not equal
+-gt  # Greater than
+-lt  # Less than
+-ge  # Greater or equal
+-le  # Less or equal
+
+Logical:
+-and, -or, -not
+
+📦 FUNCTIONS
+---------------------------
+function Greet {
+    param([string]$name)
+    Write-Output "Hello, $name!"
+}
+Greet -name "Aditya"
+
+📁 FILE OPERATIONS
+---------------------------
+Get-Content file.txt            # Read file
+Set-Content file.txt "Text"     # Write (overwrite)
+Add-Content file.txt "More"     # Append text
+Test-Path file.txt              # Check existence
+
+🔍 SEARCHING
+---------------------------
+Select-String "error" file.txt  # Like grep
+Get-Content file.txt | Where-Object { $_ -match "pattern" }
+
+🔢 SCRIPTING
+---------------------------
+# Sample script
+# myscript.ps1
+
+param (
+    [string]$name = "User"
+)
+Write-Output "Welcome, $name"
+
+Run: .\myscript.ps1 -name "Aditya"
+
+Set execution policy:
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+🧪 ERROR HANDLING
+---------------------------
+try {
+    Get-Item "file.txt"
+} catch {
+    Write-Output "Error: $_"
+} finally {
+    Write-Output "Cleanup"
+}
+
+$ErrorActionPreference = "Stop"
+
+📦 MODULES
+---------------------------
+Get-Module -ListAvailable         # List modules
+Install-Module Az -Scope CurrentUser -Force
+Import-Module Az
+
+🔐 AZURE COMMANDS (Az Module)
+---------------------------
+Connect-AzAccount
+Get-AzSubscription
+New-AzResourceGroup -Name myRG -Location eastus
+New-AzStorageAccount -Name mystorage123 -ResourceGroupName myRG -Location eastus -SkuName Standard_LRS -Kind StorageV2
+Get-AzResourceGroup
+Remove-AzResourceGroup -Name myRG -Force
+
+📊 OBJECT HANDLING
+---------------------------
+Get-Process | Where-Object { $_.CPU -gt 50 }
+Get-Service | Sort-Object Status | Select-Object -First 5
+$procs = Get-Process
+$procs[0].Name
+
+🧩 ALIASES
+---------------------------
+ls        → Get-ChildItem
+pwd       → Get-Location
+cd        → Set-Location
+cat       → Get-Content
+echo      → Write-Output
+rm        → Remove-Item
+
+📆 SYSTEM INFO
+---------------------------
+Get-Date
+Get-Uptime
+Get-EventLog -LogName System -Newest 5
+
+🔒 USER & PERMISSIONS
+---------------------------
+whoami
+Get-LocalUser
+New-LocalUser -Name "dev" -NoPassword
+Add-LocalGroupMember -Group "Administrators" -Member "dev"
+
+===========================
+END OF POWERSHELL CHEAT SHEET
+===========================
